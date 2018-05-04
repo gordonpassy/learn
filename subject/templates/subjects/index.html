@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block body%}
     <h1>Home</h1>
+    <div class="container">
+        <h2>These are the subjects we offer</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ subject_form.as_p}}
+            <button type="submit" class="btn btn-outline-success"> Add subject </button>
+
+        </form>
+    </div>
 {% endblock %}
