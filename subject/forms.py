@@ -6,4 +6,4 @@ class SubjectForm(forms.ModelForm):
 
     class Meta:
         model = Subject
-        fields = ('name')
+        fields = ('name',)
