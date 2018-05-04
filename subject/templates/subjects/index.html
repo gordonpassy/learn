@@ -6,7 +6,7 @@
     </div>
     {% for subject in subjects %}
         <div class="row">
-            <h4>{{subject.name}}</h4>
+            <h4><a href="{{subject.get_absolute_url}}">{{subject.name}}</a></h4>
         </div>
     {% endfor %}
 </div>
