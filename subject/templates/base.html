@@ -1,0 +1,23 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    {% if title %}
+    <title>Learn - {{title}}</title>
+    {% else %}
+    <title> Learn </title>
+    {% endif %}
+     {% block styles %}
+        {% bootstrap_css %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        {% block body %} {% endblock %}
+    </div>
+</body>
+
+</html>
