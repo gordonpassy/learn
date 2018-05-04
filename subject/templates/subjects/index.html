@@ -1,13 +1,23 @@
-{% extends 'base.html' %}
-{% block body%}
-    <h1>Home</h1>
-    <div class="container">
+{% extends 'base.html' %} {% block body%}
+<h1>Home</h1>
+<div class="container">
+    <div class="row">
         <h2>These are the subjects we offer</h2>
+    </div>
+    {% for subject in subjects %}
+        <div class="row">
+            <h4>{{subject.name}}</h4>
+        </div>
+    {% endfor %}
+</div>
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row">
         <form method="POST">
-            {% csrf_token %}
-            {{ subject_form.as_p}}
+            {% csrf_token %} {{ subject_form.as_p}}
             <button type="submit" class="btn btn-outline-success"> Add subject </button>
-
         </form>
     </div>
+</div>
+{% endif %}
 {% endblock %}
