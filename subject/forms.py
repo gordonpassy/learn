@@ -1,5 +1,5 @@
 from django import forms
-from .models import Subject, Chapter
+from .models import Subject, Chapter, Topic
 
 
 class SubjectForm(forms.ModelForm):
@@ -19,5 +19,16 @@ class ChapterForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Chapter title'}),
             'number': forms.NumberInput(attrs={'placeholder': 'Chapter number'})
+        }
+        fields = ('number', 'title',)
+
+
+class TopicForm(forms.ModelForm):
+
+    class Meta:
+        model = Topic
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Topic title'}),
+            'number': forms.NumberInput(attrs={'placeholder': 'Topic number'})
         }
         fields = ('number', 'title',)
