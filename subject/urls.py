@@ -7,5 +7,5 @@ app_name = 'subject'
 urlpatterns = [
     url(r'^$', views.index, name='homepage'),
     url(r'^login/$', login, {'template_name': 'auth/login.html'}),
-    url(r'^(?P<id>\d+)(?P<subject_slug>[-\w]+)/$', views.subject_chapters, name='subject_chapters'),
+    url(r'^(?P<id>\d+)/$', views.subject_chapters, name='subject_chapters'),
 ]
