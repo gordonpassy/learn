@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import SubjectForm, ChapterForm
-from .models import Subject, Chapter
+from .forms import SubjectForm, ChapterForm, TopicForm
+from .models import Subject, Chapter, Topic
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -37,6 +37,25 @@ def subject_chapters(request, id):
             return redirect("subject:subject_chapters", id=subject.id)
     else:
         form = ChapterForm()
-    args = {"subject": subject, "title": title, "chapter_form": form, "subject_chapters": chapters}
+    args = {"subject": subject, "title": title, "chapter_form": form, "chapters": chapters}
 
     return render(request, "subjects/subject_chapters.html", args)
+
+
+def chapter_topics(request, id):
+    chapter = get_object_or_404(Chapter, id=id)
+    topics = Topic.objects.filter(chapter_id=id)
+    title = chapter
+    if request.method == "POST":
+        form = TopicForm(request.POST)
+        if form.is_valid():
+            topic = form.save()
+            topic.author = request.user
+            topic.chapter = chapter
+            topic.save()
+            return redirect("subject:chapter_topics", id=chapter.id)
+    else:
+        form = TopicForm()
+    args = {'chapter': chapter, "title": title, "topics": topics, "topic_form": form}
+
+    return render(request, "subjects/chapter_topics.html", args)
