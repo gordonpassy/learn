@@ -23,3 +23,15 @@ class Chapter(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Topic(models.Model):
+    title = models.CharField(max_length=40)
+    number = models.IntegerField()
+    chapter = models.ForeignKey(Chapter, related_name='chapter', blank=True, null=True, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['id']
+
+    def __str__(self):
+        return self.title
