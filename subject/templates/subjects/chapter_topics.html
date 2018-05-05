@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{chapter.number}}. {{chapter}}</h1>
+<h3>Topics in {{chapter}} are:</h3>
+{% for topic in topics %}
+<div class="row">
+    <a href="#"><h2>{{chapter.number}}.{{topic.number}} {{topic.title}}</h2></a>
+</div>
+{% endfor %}
+<div class="row mt-3 pt-3">
+    <h3>You can add more topics here</h3>
+</div>
+<div class="row">
+    <form method="POST">
+        {% csrf_token %} {{ topic_form.as_p}}
+        <button type="submit" class="btn btn-outline-success"> Add subject </button>
+    </form>
+</div>
+{% endblock %}
