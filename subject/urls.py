@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^login/$', login, {'template_name': 'auth/login.html'}, name='login'),
     url(r'^logout/$', logout, {'template_name': 'auth/logout.html'}, name='logout'),
     url(r'^(?P<id>\d+)/$', views.subject_chapters, name='subject_chapters'),
+    url(r'^chapter/(?P<id>\d+)/$', views.chapter_topics, name='chapter_topics'),
 ]
