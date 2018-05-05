@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import SubjectForm
-from .models import Subject
+from .forms import SubjectForm, ChapterForm
+from .models import Subject, Chapter
 
 # Create your views here.
 
@@ -21,8 +21,17 @@ def index(request):
     return render(request, "subjects/index.html", args)
 
 
-def subject_chapters(request, id, subject_slug):
-    subject = get_object_or_404(Subject, id=id, slug=subject_slug)
+def subject_chapters(request, id):
+    subject = get_object_or_404(Subject, id=id)
     title = subject
-    args = {"subject": subject, "title": title}
+    if request.method == "POST":
+        form = ChapterForm(request.POST)
+        if form.is_valid():
+            chapter = form.save()
+            chapter.author = request.user
+            chapter.save()
+            return redirect("subject:subject_chapters", id=subject.id)
+    else:
+        form = ChapterForm()
+    args = {"subject": subject, "title": title, "chapter_form": form}
     return render(request, "subjects/subject_chapters.html", args)
