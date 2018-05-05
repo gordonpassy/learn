@@ -15,6 +15,7 @@ class Subject(models.Model):
 
 class Chapter(models.Model):
     title = models.CharField(max_length=40)
+    number = models.IntegerField()
     subject = models.ForeignKey(Subject, related_name='subject', blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
