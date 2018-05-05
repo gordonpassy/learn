@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 {% block body %}
     <h1> {{subject}}</h1>
-    <form method="POST">
-        {% csrf_token %} {{ chapter_form.as_p}}
-        <button type="submit" class="btn btn-outline-success"> Add subject </button>
-    </form>
+    <h3>Topics in {{subject}} are:</h3>
+    {% for subject_chapter in subject_chapters %}
+    <div class="row">
+        <h2>{{subject_chapter.number}}.{{subject_chapter.title}}</h2>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <h3>You can add more topics here</h3>
+    </div>
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %} {{ chapter_form.as_p}}
+            <button type="submit" class="btn btn-outline-success"> Add subject </button>
+        </form>
+    </div>
 {% endblock %}
