@@ -16,7 +16,15 @@
 
 <body>
     <div class="container">
-        {% block body %} {% endblock %}
+        <div class="container mt-3 pt-3">
+            <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'subject:homepage' %}">Learn</a>
+</nav>
+        </div>
+        <div class="container mt-3 pt-3">
+            {% block body %} {% endblock %}
+        </div>
+
     </div>
 </body>
 
