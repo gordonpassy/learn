@@ -17,6 +17,7 @@ class ChapterForm(forms.ModelForm):
     class Meta:
         model = Chapter
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Chapter title'})
+            'title': forms.TextInput(attrs={'placeholder': 'Chapter title'}),
+            'number': forms.NumberInput(attrs={'placeholder': 'Chapter number'})
         }
-        fields = ('title',)
+        fields = ('number', 'title',)
